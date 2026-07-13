@@ -12,7 +12,7 @@ dotenv.config();
 // Shared Gemini client utility with User-Agent for telemetry
 const getAiClient = () => {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey || apiKey === "AQ.Ab8RN6I6bJb8DN6TnFg9n7NmuiWqOWYKUIJGlLH57Yc8XXcCyg") {
+  if (!apiKey || apiKey === "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") {
     throw new Error("API_KEY_MISSING");
   }
   return new GoogleGenAI({
