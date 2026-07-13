@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  
+  --color-bg: var(--theme-bg);
+  --color-bg-alt: var(--theme-bg-alt);
+  --color-card: var(--theme-card);
+  --color-glass: var(--theme-glass);
+  --color-text: var(--theme-text);
+  --color-muted: var(--theme-muted);
+  --color-primary: var(--theme-primary);
+  --color-secondary: var(--theme-secondary);
+  --color-accent: var(--theme-accent);
+  --color-border: var(--theme-border);
+  --color-cta: var(--theme-cta);
+  --color-cta-hover: var(--theme-cta-hover);
+}
+
+@layer base {
+  :root {
+    --theme-bg: #F7F8FC;
+    --theme-bg-alt: #ECEEF5;
+    --theme-card: rgba(255, 255, 255, 0.92);
+    --theme-glass: rgba(255, 255, 255, 0.97);
+    --theme-text: #1C1C2E;
+    --theme-muted: #6B7280;
+    --theme-primary: #1C1C2E;
+    --theme-secondary: #006FE6;
+    --theme-accent: #006FE6;
+    --theme-border: rgba(28, 28, 46, 0.09);
+    --theme-cta: #006FE6;
+    --theme-cta-hover: #0058C0;
+    --theme-cta-text: #FFFFFF;
+    --theme-gradient: radial-gradient(ellipse at 20% 0%, #ddeeff 0%, #f0f2fa 50%, #F7F8FC 100%);
+    --theme-shadow-glow: rgba(0, 111, 230, 0.22);
+    --theme-shadow-soft: rgba(28, 28, 46, 0.06);
+  }
+
+  .dark {
+    --theme-bg: #09090B;
+    --theme-bg-alt: #18181B;
+    --theme-card: rgba(24, 24, 27, 0.6);
+    --theme-glass: rgba(24, 24, 27, 0.8);
+    --theme-text: #FAFAFA;
+    --theme-muted: #A1A1AA;
+    --theme-primary: #FFFFFF;
+    --theme-secondary: #0A84FF;
+    --theme-accent: #0A84FF;
+    --theme-border: rgba(255, 255, 255, 0.1);
+    --theme-cta: #0A84FF; /* Vibrant blue button */
+    --theme-cta-hover: #409CFF; /* Lighter blue on hover */
+    --theme-cta-text: #FFFFFF;
+    --theme-gradient: radial-gradient(circle at top left, #051024 0%, #09090B 100%); /* Subtle deep blue glow */
+    --theme-shadow-glow: rgba(10, 132, 255, 0.35);
+    --theme-shadow-soft: rgba(0, 0, 0, 0.4);
+  }
+  
+  body {
+    @apply bg-bg text-text font-sans overflow-x-hidden transition-colors duration-700 select-none cursor-default;
+    background-image: var(--theme-gradient);
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Re-enable selection and text cursor for input fields */
+  input, textarea {
+    @apply select-text cursor-text;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Ensure buttons and links always show the hand pointer */
+  a, button, [role="button"], .cursor-pointer {
+    @apply cursor-pointer;
+  }
+}
+
+.logo-gradient {
+  @apply font-black italic tracking-tight text-transparent bg-clip-text;
+  background-image: linear-gradient(to bottom right, var(--theme-primary) 20%, var(--theme-accent) 100%);
+  /* Ensure a subtle fallback text shadow doesn't break the clip */
+  filter: drop-shadow(0px 4px 24px var(--theme-shadow-glow));
+}
+
+.magic-gradient {
+  background: linear-gradient(135deg, var(--theme-bg-alt) 0%, var(--theme-bg) 100%);
+}
+
+.btn-primary {
+  @apply bg-primary text-[color:var(--theme-bg)] rounded-[12px] cursor-pointer transition-all duration-500 font-display font-semibold;
+  box-shadow: 0 4px 14px var(--theme-shadow-soft);
+}
+
+.btn-primary:hover {
+  background-color: var(--theme-cta-hover);
+  color: #FFFFFF;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--theme-shadow-glow);
+}
+
+.glass-card {
+  @apply p-8 rounded-[24px] bg-card backdrop-blur-xl border border-border relative overflow-hidden transition-all duration-500 shadow-sm;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 32px 0 var(--theme-shadow-soft);
+}
+
+.dark .glass-card {
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), 0 8px 32px 0 var(--theme-shadow-soft);
+}
+
+.glass-card:hover {
+  @apply border-accent/40 -translate-y-1.5;
+  box-shadow: 0 16px 40px -10px var(--theme-shadow-glow);
+}
+
+.price-card {
+  @apply p-8 rounded-[24px] bg-glass backdrop-blur-xl border border-border flex flex-col shadow-sm;
+  box-shadow: inset 0 0 0 1px var(--theme-border), 0 8px 32px 0 var(--theme-shadow-soft);
+}
+
+.tag {
+  @apply px-4 py-2 rounded-full bg-card border border-border text-xs text-accent font-semibold font-display shadow-sm backdrop-blur-md transition-all duration-500 cursor-default hover:-translate-y-1 hover:scale-105 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/20;
+}
+
+.chat-msg {
+  @apply p-4 rounded-2xl text-sm max-w-[80%] backdrop-blur-md leading-relaxed shadow-sm;
+}
+
+.chat-msg.user {
+  @apply self-end bg-accent text-white font-medium shadow-md;
+}
+
+h1, h2, h3, h4, .font-display {
+  @apply font-display tracking-tight;
+  /* Color is intentionally NOT set here — let each element control its own color */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-bg-alt;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted/30 rounded-full border-2 border-solid border-bg-alt;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted/60;
+}
+
+/* Custom Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-2deg) scale(1.05);
+  }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 10s ease-in-out infinite 2s;
+}
+
+/* View Transition API — smooth circular wipe for BOTH light→dark AND dark→light */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* Smooth scrollbar track */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Smooth focus ring for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
