@@ -1,0 +1,6 @@
+{
+  "name": "Remix: GENS NOAH AI",
+  "description": "Engineering Intelligent Digital Ecosystems - AI-powered platforms, scalable cloud infrastructure, and high-performance applications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
